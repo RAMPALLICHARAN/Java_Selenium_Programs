@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="ExtentReport_Testing.ExtentReport_DemoWebShop">
+      <class name="Sample_Day32_Websites.WebsitesWithOtp">
         <methods>
-          <include name="checkTitleName"/>
-          <include name="clickBook"/>
+          <include name="tearDown"/>
+          <include name="scrollAndClickBuyNow"/>
+          <include name="selectInfinixProduct"/>
           <include name="launchBrowser"/>
         </methods>
-      </class> <!-- ExtentReport_Testing.ExtentReport_DemoWebShop -->
+      </class> <!-- Sample_Day32_Websites.WebsitesWithOtp -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
