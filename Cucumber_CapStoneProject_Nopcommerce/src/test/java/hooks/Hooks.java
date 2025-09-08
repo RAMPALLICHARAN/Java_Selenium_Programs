@@ -8,13 +8,11 @@ public class Hooks {
 
     @Before
     public void setUp() {
-        // Browser setup
-        DriverFactory.getDriver();
+        DriverFactory.getDriver(); // Launch driver before each scenario
     }
 
     @After
     public void tearDown() {
-        // Close browser after each scenario
-        DriverFactory.quitDriver();
+        DriverFactory.quitDriver(); // Close driver after each scenario
     }
 }
