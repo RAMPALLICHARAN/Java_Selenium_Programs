@@ -6,7 +6,13 @@
       <class name="Nopcommerce.NopCommerceTests">
         <methods>
           <include name="setUp"/>
-          <include name="shoppingCartQuantity"/>
+          <include name="selectProductRadioButton"/>
+          <include name="loginUserSuccessfully"/>
+          <include name="addProductToCart"/>
+          <include name="addProductFromProductPage"/>
+          <include name="selectProductFromDropdown"/>
+          <include name="launchBrowserTest"/>
+          <include name="registerUserSuccessfully"/>
         </methods>
       </class> <!-- Nopcommerce.NopCommerceTests -->
     </classes>

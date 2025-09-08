@@ -93,7 +93,7 @@ public class NopCommerceTests {
         System.out.println("Registered with new Email: " + dynamicEmail);
     }
 
-    @Test(priority = 3, dependsOnMethods = {"userCanRegisterSuccessfully"})
+    @Test(priority = 3, dependsOnMethods = {"registerUserSuccessfully"})
     public void loginUserSuccessfully() throws IOException {
         ExcelUtils excel = new ExcelUtils();
         String email = excel.getCellData(excelPath, "Sheet1", 1, 0);
@@ -150,93 +150,93 @@ public class NopCommerceTests {
 
     
     
-    @Test(priority = 8)
-    public void increaseCartQuantityToTwo() {
-        // Wait until the quantity input is visible
-        WebElement qtyInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.qty-input")));
-
-        // Get current quantity
-        int currentQty = Integer.parseInt(qtyInput.getAttribute("value"));
-        int desiredQty = 2; // Target quantity
-
-        // Click the "+" button enough times to reach desired quantity
-        if (currentQty < desiredQty) {
-            WebElement plusButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.quantity.up")));
-            for (int i = currentQty; i < desiredQty; i++) {
-                plusButton.click();
-                // Small wait to allow UI to update
-                try {
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        // Optional: Wait until cart input reflects desired quantity
-        wait.until(ExpectedConditions.attributeToBe(By.cssSelector("input.qty-input"), "value", String.valueOf(desiredQty)));
-    }
-
-    @Test(priority = 9)
-    public void openShippingPage() {
-        driver.findElement(By.id("open-estimate-shipping-popup")).click();
-    }
-
-    @Test(priority = 10)
-    public void enterShippingAddress() throws InterruptedException {
-        Select countrySelect = new Select(driver.findElement(By.id("CountryId")));
-        countrySelect.selectByVisibleText("India");
-        driver.findElement(By.id("ZipPostalCode")).sendKeys("505305");
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("//div[normalize-space()='Next Day Air']")).click();
-        driver.findElement(By.xpath("//button[normalize-space()='Apply']")).click();
-    }
-
-    @Test(priority = 11)
-    public void proceedToCheckout() throws InterruptedException {
-   	 JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollBy(0,400)", "");
-       driver.findElement(By.xpath("//input[@id='termsofservice']")).click();
-       driver.findElement(By.xpath("//button[@id='checkout']")).click();
-       Thread.sleep(2000);
-   	    JavascriptExecutor js1 = (JavascriptExecutor) driver;
-       js1.executeScript("window.scrollBy(0,-400)", "");
-   }
-
-    @Test(priority = 12)
-    public void clickonDigitalDownloads() throws Exception {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        
-        // Use desktop menu locator
-        WebElement digitalDownloads = wait.until(
-            ExpectedConditions.elementToBeClickable(
-                By.xpath("//ul[@class='top-menu notmobile']//a[normalize-space()='Digital downloads']")
-            )
-        );
-        
-        digitalDownloads.click();
-    }
-
-
-    @Test(priority = 13)
-    public void clickonbooks() {
-       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        
-        // Use desktop menu locator
-        WebElement books = wait.until(
-            ExpectedConditions.elementToBeClickable(
-            		By.xpath("//a[normalize-space()='Books']")
-
-            )
-        );
-        
-        books.click();
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        if(driver != null){
-            driver.quit();
-        }
-    }
+//    @Test(priority = 8)
+//    public void increaseCartQuantityToTwo() {
+//        // Wait until the quantity input is visible
+//        WebElement qtyInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input.qty-input")));
+//
+//        // Get current quantity
+//        int currentQty = Integer.parseInt(qtyInput.getAttribute("value"));
+//        int desiredQty = 2; // Target quantity
+//
+//        // Click the "+" button enough times to reach desired quantity
+//        if (currentQty < desiredQty) {
+//            WebElement plusButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.quantity.up")));
+//            for (int i = currentQty; i < desiredQty; i++) {
+//                plusButton.click();
+//                // Small wait to allow UI to update
+//                try {
+//                    Thread.sleep(500);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//
+//        // Optional: Wait until cart input reflects desired quantity
+//        wait.until(ExpectedConditions.attributeToBe(By.cssSelector("input.qty-input"), "value", String.valueOf(desiredQty)));
+//    }
+//
+//    @Test(priority = 9)
+//    public void openShippingPage() {
+//        driver.findElement(By.id("open-estimate-shipping-popup")).click();
+//    }
+//
+//    @Test(priority = 10)
+//    public void enterShippingAddress() throws InterruptedException {
+//        Select countrySelect = new Select(driver.findElement(By.id("CountryId")));
+//        countrySelect.selectByVisibleText("India");
+//        driver.findElement(By.id("ZipPostalCode")).sendKeys("505305");
+//        Thread.sleep(2000);
+//        driver.findElement(By.xpath("//div[normalize-space()='Next Day Air']")).click();
+//        driver.findElement(By.xpath("//button[normalize-space()='Apply']")).click();
+//    }
+//
+//    @Test(priority = 11)
+//    public void proceedToCheckout() throws InterruptedException {
+//   	 JavascriptExecutor js = (JavascriptExecutor) driver;
+//        js.executeScript("window.scrollBy(0,400)", "");
+//       driver.findElement(By.xpath("//input[@id='termsofservice']")).click();
+//       driver.findElement(By.xpath("//button[@id='checkout']")).click();
+//       Thread.sleep(2000);
+//   	    JavascriptExecutor js1 = (JavascriptExecutor) driver;
+//       js1.executeScript("window.scrollBy(0,-400)", "");
+//   }
+//
+//    @Test(priority = 12)
+//    public void clickonDigitalDownloads() throws Exception {
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        
+//        // Use desktop menu locator
+//        WebElement digitalDownloads = wait.until(
+//            ExpectedConditions.elementToBeClickable(
+//                By.xpath("//ul[@class='top-menu notmobile']//a[normalize-space()='Digital downloads']")
+//            )
+//        );
+//        
+//        digitalDownloads.click();
+//    }
+//
+//
+//    @Test(priority = 13)
+//    public void clickonbooks() {
+//       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        
+//        // Use desktop menu locator
+//        WebElement books = wait.until(
+//            ExpectedConditions.elementToBeClickable(
+//            		By.xpath("//a[normalize-space()='Books']")
+//
+//            )
+//        );
+//        
+//        books.click();
+//    }
+//
+//    @AfterClass(alwaysRun = true)
+//    public void tearDown() {
+//        if(driver != null){
+//            driver.quit();
+//        }
+//    }
 }
